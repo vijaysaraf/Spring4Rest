@@ -27,6 +27,10 @@ public class Employee implements Serializable {
 	private String lastName;
 	@Column(name = "EMAIL")
 	private String email;
+
+	@Column(name = "GENDER", length = 1)
+	private String gender;
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "employee")
 	Set<Addresses> addresses;
 	// Getters and Setters
@@ -35,20 +39,22 @@ public class Employee implements Serializable {
 		super();
 	}
 
-	public Employee(Integer id, String firstName, String lastName, String email) {
+	public Employee(Integer id, String firstName, String lastName, String email, String gender) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.gender = gender;
 	}
 
-	public Employee(String firstName, String lastName, String email) {
+	public Employee(String firstName, String lastName, String email, String gender) {
 		super();
 
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.gender = gender;
 	}
 
 	public Integer getId() {
@@ -83,6 +89,14 @@ public class Employee implements Serializable {
 		this.email = email;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public Set<Addresses> getAddresses() {
 		return addresses;
 	}
@@ -94,6 +108,6 @@ public class Employee implements Serializable {
 	@Override
 	public String toString() {
 		return "EmployeeVO [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ "]";
+				+ ", gender=" + gender + "]";
 	}
 }
