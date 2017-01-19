@@ -12,15 +12,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 
 public class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntryPoint {
 	
-	public CustomBasicAuthenticationEntryPoint(){
-		super();
-		System.out.println(">>>>>>>>>>>CustomBasicAuthenticationEntryPoint created");
-	}
+	
 	@Override
 	public void commence(final HttpServletRequest request, final HttpServletResponse response,
 			final AuthenticationException authException) throws IOException, ServletException {
 		// Authentication failed, send error response.
-		System.out.println(">>>>>>>>>>>CustomBasicAuthenticationEntryPoint SC_UNAUTHORIZED");
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
 		PrintWriter writer = response.getWriter();
@@ -29,7 +25,6 @@ public class CustomBasicAuthenticationEntryPoint extends BasicAuthenticationEntr
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		System.out.println(">>>>>>>>>>>CustomBasicAuthenticationEntryPoint afterPrropertiesSet()");
 		setRealmName("TEST");
 		super.afterPropertiesSet();
 	}
